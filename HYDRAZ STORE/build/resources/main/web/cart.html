@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Hydraz Store | Cart & Checkout">
+    <meta property="og:description" content="Complete your purchase on the official Hydraz Network store.">
+    <meta property="og:image" content="https://play.hydraz.online/img/logo.png">
+    <meta property="og:url" content="https://store.hydraz.online/cart.html">
+    <meta property="theme-color" content="#A855F7">
+    <title>Your Cart — Hydraz Store</title>
+    <link rel="stylesheet" href="store.css?v=20260909-7">
+    <link rel="stylesheet" href="ai-chat.css?v=20260909-7">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="cart-view">
+
+    <!-- Payment History Drawer -->
+    <div class="ph-overlay" id="ph-overlay">
+        <div class="ph-drawer">
+            <div class="ph-drawer-header">
+                <h2><i class="fas fa-receipt"></i> Payment History</h2>
+                <button class="ph-close-btn" id="ph-close-btn" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="ph-ign-label" id="ph-ign-label">
+                <img id="ph-avatar" src="https://mc-heads.net/avatar/MHF_Steve/20" alt="">
+                Playing as <strong id="ph-ign-name">—</strong>
+            </div>
+            <div class="ph-tabs">
+                <button class="ph-tab active" data-status="VERIFYING"><i class="fas fa-spinner fa-spin"></i> Verifying <span class="tab-count" id="ph-count-verifying">0</span></button>
+                <button class="ph-tab" data-status="COMPLETED"><i class="fas fa-check-circle"></i> Completed <span class="tab-count" id="ph-count-completed">0</span></button>
+            </div>
+            <div class="ph-body" id="ph-body">
+                <div class="orders-loading"><i class="fas fa-spinner fa-spin"></i> Loading orders...</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-container">
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" style="display:flex;align-items:center;">
+                    <img src="img/logo.png" alt="Hydraz Logo" class="logo" style="height:46px;width:auto;max-width:54px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(168,85,247,0.3));">
+                </a>
+                <span class="server-status online"></span>
+            </div>
+            <nav class="store-nav">
+                <div class="nav-group-title">Main Navigation</div>
+                <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+                <a href="tiers.html" class="nav-item"><i class="fas fa-trophy"></i> Player Tiers</a>
+                
+                <div class="nav-group-title" style="margin-top: 15px;">Lifesteal</div>
+                <a href="store.html#lifesteal-ranks" class="nav-item"><i class="fas fa-crown"></i> Ranks</a>
+                <a href="store.html#lifesteal-keys" class="nav-item"><i class="fas fa-key"></i> Keys & Crates</a>
+                <a href="store.html#lifesteal-coins" class="nav-item"><i class="fas fa-coins"></i> Coins</a>
+
+                <div class="nav-group-title" style="margin-top: 15px;">Survival</div>
+                <a href="store.html#survival-ranks" class="nav-item"><i class="fas fa-crown"></i> Ranks</a>
+                <a href="store.html#survival-keys" class="nav-item"><i class="fas fa-key"></i> Keys & Crates</a>
+
+                <div class="nav-group-title" style="margin-top: 15px;">Practice</div>
+                <a href="store.html#practice-coins" class="nav-item"><i class="fas fa-coins"></i> Coins</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="server-ip" onclick="navigator.clipboard.writeText('play.hydraz.online').then(()=>this.querySelector('span').innerText='Copied!'); setTimeout(()=>this.querySelector('span').innerText='play.hydraz.online', 2000)" style="margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; transition: all 0.2s;">
+                    <span class="ip-address" style="font-weight: 700; font-size: 13px;">play.hydraz.online</span>
+                    <i class="far fa-copy"></i>
+                </div>
+                <a href="https://discord.gg/5uDZxAY4Dp" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #5865F2; color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 14px; position: relative;">
+                    <div style="position:absolute; left: 12px; width: 8px; height: 8px; background: #22C55E; border-radius: 50%; box-shadow: 0 0 10px #22C55E;"></div>
+                    <i class="fab fa-discord"></i> Join Discord
+                </a>
+            </div>
+        </aside>
+
+        <main id="main-content">
+            <header id="main-header">
+                <a href="store.html" class="action-button"><i class="fas fa-arrow-left"></i> Back to Store</a>
+                <div class="header-actions" id="header-actions" style="margin-left: auto;">
+                    <!-- Populated by JS -->
+                </div>
+            </header>
+
+            <section id="cart-page">
+                <div class="cart-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h1 class="cart-page-title"><i class="fas fa-shopping-bag"></i> Your Cart</h1>
+                        <button id="clear-cart-btn" class="action-button" style="color: #ff4d4d; border-color: rgba(255,77,77,0.4); display: none;">
+                            <i class="fas fa-trash"></i> Clear Cart
+                        </button>
+                    </div>
+                    <div id="cart-items">
+                        <!-- Cart items dynamically loaded here -->
+                    </div>
+                    <div class="cart-summary-box" style="background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; margin-top: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; color: #8892A4; font-size: 14px; margin-bottom: 8px;">
+                            <span>Subtotal</span>
+                            <span id="subtotal-price" style="color: #FFF; font-weight: 700;">₹0.00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; color: #8892A4; font-size: 14px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1);">
+                            <span style="display: flex; align-items: center; gap: 6px;">
+                                Convenience Fee <span style="font-size: 10px; background: rgba(168,85,247,0.2); color: #C084FC; padding: 2px 6px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px;">VERIFICATION ID</span>
+                            </span>
+                            <span id="convenience-fee" style="color: #C084FC; font-weight: 700;">+₹0.00</span>
+                        </div>
+                        <div class="cart-total" style="display: flex; justify-content: space-between; align-items: center; font-size: 18px; font-weight: 800; color: #FFF;">
+                            <span>Total Payable</span>
+                            <span id="total-price" style="color: #4ADE80; font-size: 20px;">₹0.00</span>
+                        </div>
+                        <div style="font-size: 11px; color: #64748B; margin-top: 8px; line-height: 1.4;">
+                            <i class="fas fa-shield-alt" style="color: #10B981; margin-right: 4px;"></i> The small decimal fee generates a unique verification amount for instant order approval.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="checkout-container">
+                        <h1><i class="fas fa-credit-card" style="color:var(--primary);font-size:18px;margin-right:8px;"></i>Checkout</h1>
+                        
+                        <!-- Dynamic UPI Payment Card -->
+                        <!-- Dynamic UPI Payment Card -->
+                        <div class="payment-card">
+                            <div style="text-align: center; margin-bottom: 12px;">
+                                <span class="payment-label" style="display: inline-block; background: rgba(168,85,247,0.15); color: #C084FC; font-weight: 800; font-size: 11px; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Dynamic UPI QR</span>
+                                <div style="font-size: 15px; font-weight: 800; color: #FFF;">Scan & Pay <span id="qr-amount-badge" style="color: #4ADE80; font-size: 17px;">₹0</span></div>
+                            </div>
+
+                            <div class="qr-wrapper">
+                                <img src="img/qrcode.png" alt="Dynamic UPI QR Code" class="payment-qr" id="payment-qr-code">
+                            </div>
+
+                            <div class="upi-info-card">
+                                <div style="font-size: 11px; color: #8892A4; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Payee Name</div>
+                                <div style="font-size: 14px; font-weight: 800; color: #FFF; margin-bottom: 8px;">Veervikram Pratap Singh</div>
+                                
+                                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
+                                    <code>veervikram278@okaxis</code>
+                                    <button type="button" onclick="navigator.clipboard.writeText('veervikram278@okaxis').then(()=>showToast('UPI ID Copied! ✓'))" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #FFF; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700;" title="Copy UPI ID">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+
+                                <a id="pay-upi-btn" href="upi://pay?pa=veervikram278@okaxis&pn=Veervikram%20Pratap%20singh&cu=INR">
+                                    <i class="fas fa-mobile-alt"></i> Pay via UPI App (GPay / PhonePe)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- IGN section — populated by JS -->
+                        <div id="checkout-ign-section" style="margin-bottom: 16px;"></div>
+
+                        <form id="checkout-form">
+                            <!-- Hidden IGN field, filled by JS -->
+                            <input type="hidden" id="ign" name="ign">
+                            
+                            <!-- Instant UPI Verification Notice (No Screenshot Needed) -->
+                            <div class="auto-verify-info" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; text-align: left;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-bolt" style="color: #10B981; font-size: 15px;"></i>
+                                    <span style="font-weight: 800; font-size: 12px; color: #10B981; letter-spacing: 0.5px; text-transform: uppercase;">Zero-Touch UPI Verification</span>
+                                </div>
+                                <p style="font-size: 12px; color: #94A3B8; margin: 0; line-height: 1.5;">
+                                    No screenshot needed! Pay the exact amount via QR or UPI app. Once paid, click <strong>"Complete Purchase & Verify"</strong> below for automatic instant in-game delivery.
+                                </p>
+                            </div>
+
+                            <button type="submit" class="checkout-button" id="checkout-submit-btn">
+                                <span>Complete Purchase & Verify</span>
+                                <i class="fas fa-shield-alt"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mobile Footer (Server IP + Discord) -->
+            <footer class="mobile-store-footer">
+                <div class="server-ip" onclick="navigator.clipboard.writeText('play.hydraz.online').then(()=>this.querySelector('span').innerText='Copied!'); setTimeout(()=>this.querySelector('span').innerText='play.hydraz.online', 2000)" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; transition: all 0.2s;">
+                    <span class="ip-address" style="font-weight: 700; font-size: 13px; color: #FFF;">play.hydraz.online</span>
+                    <i class="far fa-copy" style="color: #A855F7;"></i>
+                </div>
+                <a href="https://discord.gg/5uDZxAY4Dp" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #5865F2; color: white; text-decoration: none; padding: 11px; border-radius: 8px; font-weight: 700; font-size: 13.5px; position: relative;">
+                    <div style="position:absolute; left: 14px; width: 8px; height: 8px; background: #22C55E; border-radius: 50%; box-shadow: 0 0 10px #22C55E;"></div>
+                    <i class="fab fa-discord"></i> Join Discord
+                </a>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Verifying Modal Overlay -->
+    <div class="vm-overlay" id="vm-overlay" style="display: none;">
+        <div class="vm-card">
+            <div class="vm-spinner-wrap" id="vm-spinner-wrap">
+                <div class="vm-spinner" id="vm-spinner"></div>
+            </div>
+            <h3 id="vm-title">Verifying Payment...</h3>
+            <p id="vm-subtitle">Checking UPI gateway for exact match of <span id="vm-amount" style="color: #4ADE80; font-weight: 800;">₹0.00</span></p>
+            <div class="vm-progress-track">
+                <div class="vm-progress-bar" id="vm-progress-bar"></div>
+            </div>
+            <div class="vm-info-box" id="vm-info-box">
+                <i class="fas fa-shield-alt" style="color: #A855F7;"></i>
+                <span id="vm-order-text">Order #— &bull; Listening for UPI payment notification</span>
+            </div>
+            <div id="vm-actions" style="margin-top: 20px; display: none;">
+                <button type="button" id="vm-done-btn" class="vm-btn" style="background: linear-gradient(135deg, #10B981, #059669);">
+                    <i class="fas fa-check"></i> View in Payment History
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="session.js?v=20260909-7"></script>
+    <script src="cart.js?v=20260909-7"></script>
+    <script src="ai-chat.js?v=20260909-7"></script>
+</body>
+</html>

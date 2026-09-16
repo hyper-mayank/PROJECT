@@ -1,0 +1,418 @@
+Summary for build\libs\HydrazStore-1.0-SNAPSHOT-all.jar
+Decompiled with CFR 0.152
+
+
+com.hydraz.store.libs.javalin.util.ConcurrencyUtil
+----------------------------
+
+executorService(java.lang.String )
+  Unable to fully structure code
+jettyThreadPool(java.lang.String int int )
+  Unable to fully structure code
+
+
+com.hydraz.store.libs.javalin.plugin.bundled.RouteOverviewRenderer
+----------------------------
+
+handle(com.hydraz.store.libs.javalin.http.Context )
+  Unable to fully structure code
+
+
+com.hydraz.store.libs.javalin.plugin.bundled.SslRedirectPlugin
+----------------------------
+
+apply$lambda$3(com.hydraz.store.libs.javalin.plugin.bundled.SslRedirectPlugin com.hydraz.store.libs.javalin.Javalin com.hydraz.store.libs.javalin.http.Context )
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+com.hydraz.store.libs.javalin.http.servlet.JavalinServletContextKt
+----------------------------
+
+readAndResetStreamIfPossible(java.io.InputStream java.nio.charset.Charset )
+  Unable to fully structure code
+
+
+com.hydraz.store.libs.jda.api.utils.WidgetUtil
+----------------------------
+
+getWidget(long )
+  Unable to fully structure code
+
+
+okhttp3.internal.connection.ExchangeFinder
+----------------------------
+
+findConnection(int int int int boolean )
+  Unable to fully structure code
+
+
+okhttp3.internal.publicsuffix.PublicSuffixDatabase
+----------------------------
+
+readTheListUninterruptibly()
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [3[CATCHBLOCK]], but top level block is 2[TRYBLOCK]
+
+
+okhttp3.internal.http.RetryAndFollowUpInterceptor
+----------------------------
+
+intercept(okhttp3.Interceptor$Chain )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+
+
+okhttp3.internal.concurrent.TaskRunner
+----------------------------
+
+run()
+  Unable to fully structure code
+
+
+okhttp3.internal.Util
+----------------------------
+
+isCivilized(okhttp3.internal.io.FileSystem java.io.File )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+
+
+okhttp3.Headers
+----------------------------
+
+checkValue(java.lang.String java.lang.String )
+  Unable to fully structure code
+
+
+okhttp3.Cookie
+----------------------------
+
+dateCharacterOffset(java.lang.String int int boolean )
+  Unable to fully structure code
+
+
+okio.FileSystem
+----------------------------
+
+-read(okio.Path kotlin.jvm.functions.Function1<? super okio.BufferedSource, ? extends T> )
+  Loose catch block
+-write(okio.Path boolean kotlin.jvm.functions.Function1<? super okio.BufferedSink, ? extends T> )
+  Loose catch block
+-write$default(okio.FileSystem okio.Path boolean kotlin.jvm.functions.Function1 int java.lang.Object )
+  Loose catch block
+
+
+okio.Okio__OkioKt
+----------------------------
+
+use(T kotlin.jvm.functions.Function1<? super T, ? extends R> )
+  Loose catch block
+
+
+okio.PeekSource
+----------------------------
+
+read(okio.Buffer long )
+  Unable to fully structure code
+
+
+okio.Utf8
+----------------------------
+
+processUtf8CodePoints(byte[] int int kotlin.jvm.functions.Function1<? super java.lang.Integer, kotlin.Unit> )
+  Unable to fully structure code
+processUtf16Chars(byte[] int int kotlin.jvm.functions.Function1<? super java.lang.Character, kotlin.Unit> )
+  Unable to fully structure code
+
+
+okio.ZipFileSystem
+----------------------------
+
+metadataOrNull(okio.Path )
+  Loose catch block
+source(okio.Path )
+  Loose catch block
+
+
+okio.internal.-ByteString
+----------------------------
+
+codePointIndexToCharIndex(byte[] int )
+  Unable to fully structure code
+
+
+okio.internal.-FileSystem
+----------------------------
+
+commonCopy(okio.FileSystem okio.Path okio.Path )
+  Loose catch block
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+collectRecursively(kotlin.sequences.SequenceScope<? super okio.Path> okio.FileSystem kotlin.collections.ArrayDeque<okio.Path> okio.Path boolean boolean kotlin.coroutines.Continuation<? super kotlin.Unit> )
+  Unable to fully structure code
+
+
+okio.internal._Utf8Kt
+----------------------------
+
+commonToUtf8String(byte[] int int )
+  Unable to fully structure code
+
+
+kotlin.collections.SlidingWindowKt
+----------------------------
+
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+
+
+kotlin.internal.PlatformImplementations
+----------------------------
+
+<clinit>()
+  Unable to fully structure code
+
+
+kotlin.jvm.JvmClassMappingKt
+----------------------------
+
+getJavaObjectType(kotlin.reflect.KClass<T> )
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+kotlin.sequences.SequencesKt__SequencesKt
+----------------------------
+
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+
+
+kotlin.sequences.SequencesKt___SequencesKt
+----------------------------
+
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+kotlin.text.DelimitedRangesSequence
+----------------------------
+
+calcNext()
+  Unable to fully structure code
+
+
+kotlin.text.Regex
+----------------------------
+
+invoke(java.lang.Enum )
+  Ignored method signature, as it can't be verified against descriptor
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+
+
+kotlin.io.path.PathTreeWalk
+----------------------------
+
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+invokeSuspend(java.lang.Object )
+  Unable to fully structure code
+
+
+org.eclipse.jetty.server.session.JDBCSessionDataStore
+----------------------------
+
+doLoad(java.lang.String )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+doExists(java.lang.String )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+
+
+org.eclipse.jetty.server.LocalConnector
+----------------------------
+
+waitForResponse(boolean long java.util.concurrent.TimeUnit )
+  Unable to fully structure code
+
+
+org.eclipse.jetty.server.HttpOutput
+----------------------------
+
+complete(org.eclipse.jetty.util.Callback )
+  Unable to fully structure code
+  Could not resolve type clashes
+close()
+  Unable to fully structure code
+flush()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.server.handler.DebugHandler
+----------------------------
+
+handle(java.lang.String org.eclipse.jetty.server.Request jakarta.servlet.http.HttpServletRequest jakarta.servlet.http.HttpServletResponse )
+  Loose catch block
+
+
+org.eclipse.jetty.server.handler.ErrorHandler
+----------------------------
+
+handle(java.lang.String org.eclipse.jetty.server.Request jakarta.servlet.http.HttpServletRequest jakarta.servlet.http.HttpServletResponse )
+  Loose catch block
+
+
+org.eclipse.jetty.server.MultiPartFormInputStream
+----------------------------
+
+parse()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.server.HttpChannelState
+----------------------------
+
+onError(java.lang.Throwable )
+  Unable to fully structure code
+
+
+org.eclipse.jetty.websocket.common.JettyWebSocketFrameHandler
+----------------------------
+
+resume()
+  Unable to fully structure code
+demand()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.http.QuotedCSVParser
+----------------------------
+
+addValue(java.lang.String )
+  Unable to fully structure code
+
+
+org.eclipse.jetty.http.HttpGenerator
+----------------------------
+
+generateResponse(org.eclipse.jetty.http.MetaData$Response boolean java.nio.ByteBuffer java.nio.ByteBuffer java.nio.ByteBuffer boolean )
+  Unable to fully structure code
+
+
+org.eclipse.jetty.http.RFC6265CookieParser
+----------------------------
+
+parseField(java.lang.String )
+  Unable to fully structure code
+
+
+org.eclipse.jetty.io.AbstractEndPoint
+----------------------------
+
+shutdownInput()
+  Unable to fully structure code
+shutdownOutput()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.io.ssl.SslConnection
+----------------------------
+
+fill(java.nio.ByteBuffer )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [8[TRYBLOCK]], but top level block is 39[CASE]
+flush(java.nio.ByteBuffer[] )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [6[TRYBLOCK], 8[TRYBLOCK], 7[TRYBLOCK]], but top level block is 36[SWITCH]
+
+
+org.eclipse.jetty.xml.XmlConfiguration
+----------------------------
+
+configure()
+  Unable to fully structure code
+  Could not resolve type clashes
+set(java.lang.Object org.eclipse.jetty.xml.XmlParser$Node )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+
+
+org.eclipse.jetty.util.IteratingCallback
+----------------------------
+
+iterate()
+  Unable to fully structure code
+succeeded()
+  Unable to fully structure code
+failed(java.lang.Throwable )
+  Unable to fully structure code
+close()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.util.thread.strategy.ProduceExecuteConsume
+----------------------------
+
+produce()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy
+----------------------------
+
+dispatch()
+  Unable to fully structure code
+tryProduce(boolean )
+  Unable to fully structure code
+
+
+org.eclipse.jetty.util.thread.strategy.ProduceConsume
+----------------------------
+
+produce()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.util.thread.ReservedThreadExecutor
+----------------------------
+
+run()
+  Unable to fully structure code
+
+
+org.eclipse.jetty.util.component.AbstractLifeCycle
+----------------------------
+
+start()
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+stop()
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+
+
+org.eclipse.jetty.util.BlockingArrayQueue
+----------------------------
+
+remove(java.lang.Object )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [10[DOLOOP]], but top level block is 5[TRYBLOCK]
+
+
+com.fasterxml.jackson.databind.type.TypeFactory
+----------------------------
+
+constructSpecializedType(com.fasterxml.jackson.databind.JavaType java.lang.Class<?> boolean )
+  Unable to fully structure code
+
+
+com.fasterxml.jackson.core.io.UTF8Writer
+----------------------------
+
+write(char[] int int )
+  Unable to fully structure code
+write(java.lang.String int int )
+  Unable to fully structure code

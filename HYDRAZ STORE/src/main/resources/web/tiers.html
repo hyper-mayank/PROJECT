@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Hydraz Network — Competitive Rankings & Leaderboards">
+    <meta property="og:description" content="Official competitive practice player rankings on Hydraz Network.">
+    <meta property="og:image" content="https://play.hydraz.online/img/logo.png">
+    <meta property="og:url" content="https://store.hydraz.online/tiers">
+    <meta property="theme-color" content="#A855F7">
+    <title>Hydraz Network — Competitive Player Rankings</title>
+    <meta name="description" content="Official competitive player rankings and ELO leaderboard on Hydraz Network.">
+    <link rel="stylesheet" href="index.css?v=20260909-2">
+    <link rel="stylesheet" href="tiers.css?v=20260909-2">
+    <link rel="stylesheet" href="ai-chat.css?v=20260909-2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="particles"></div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="index.html" class="logo-link" style="display:flex;align-items:center;text-decoration:none;">
+                <img src="img/logo.png" alt="Hydraz Logo" class="brand-logo" style="height:40px;width:auto;max-height:42px;max-width:48px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(168,85,247,0.3));">
+                <div class="brand-title-group">
+                    <span class="brand-name">HYDRAZ</span>
+                    <span class="brand-sub">LEADERBOARDS</span>
+                </div>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> <span>Home</span></a>
+            <a href="store.html" class="nav-link"><i class="fas fa-store"></i> <span>Store</span></a>
+            <a href="tiers.html" class="nav-link active"><i class="fas fa-trophy"></i> <span>Tiers</span></a>
+            <a href="https://discord.gg/5uDZxAY4Dp" target="_blank" class="nav-link discord-pill">
+                <i class="fab fa-discord"></i> <span>Discord</span>
+            </a>
+            <div class="nav-link ip-pill" onclick="copyServerIp(this)" title="Click to copy server IP">
+                <i class="fas fa-server"></i>
+                <span class="ip-text">play.hydraz.online</span>
+            </div>
+            <button id="admin-toggle-btn" class="nav-link admin-nav-btn" onclick="handleAdminBtnClick()">
+                <i class="fas fa-shield-alt"></i> <span id="admin-btn-label">Staff Access</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Layout -->
+    <div class="tiers-page-layout" id="tiers-page-layout">
+        <main id="main-content" class="tiers-section">
+            
+            <!-- Hero Header -->
+            <div class="tiers-header">
+                <div class="header-badges-row">
+                    <span class="season-badge"><i class="fas fa-crown"></i> Season 1 Competitive</span>
+                    <span class="season-badge" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #34D399;">
+                        <i class="fas fa-bolt"></i> Live Practice Sync
+                    </span>
+                </div>
+                <h1 class="tiers-main-title">Competitive <span class="gradient-text">Practice Tiers</span></h1>
+                <p class="tiers-subtitle">Official Tier List & Competitive ELO Standings for Hydraz Network</p>
+                <div class="players-count" id="players-count">
+                    <i class="fas fa-spinner fa-spin"></i> Loading Leaderboards...
+                </div>
+            </div>
+
+            <!-- Top 3 Podium Spotlight -->
+            <div class="podium-container" id="podium-container" style="display:none;">
+                <!-- 2nd Place -->
+                <div class="podium-card podium-silver" id="podium-2">
+                    <div class="podium-rank-badge"><i class="fas fa-medal"></i> #2</div>
+                    <div class="podium-avatar-wrapper">
+                        <img src="" alt="2nd Place" class="podium-avatar" id="podium-img-2">
+                    </div>
+                    <h3 class="podium-ign" id="podium-ign-2">-</h3>
+                    <div class="podium-tier" id="podium-tier-2">-</div>
+                    <div class="podium-elo" id="podium-elo-2">- ELO</div>
+                </div>
+
+                <!-- 1st Place (Crown Champion) -->
+                <div class="podium-card podium-gold" id="podium-1">
+                    <div class="podium-crown"><i class="fas fa-crown"></i></div>
+                    <div class="podium-rank-badge"><i class="fas fa-trophy"></i> #1 CHAMPION</div>
+                    <div class="podium-avatar-wrapper">
+                        <img src="" alt="1st Place" class="podium-avatar" id="podium-img-1">
+                    </div>
+                    <h3 class="podium-ign" id="podium-ign-1">-</h3>
+                    <div class="podium-tier" id="podium-tier-1">-</div>
+                    <div class="podium-elo" id="podium-elo-1">- ELO</div>
+                </div>
+
+                <!-- 3rd Place -->
+                <div class="podium-card podium-bronze" id="podium-3">
+                    <div class="podium-rank-badge"><i class="fas fa-medal"></i> #3</div>
+                    <div class="podium-avatar-wrapper">
+                        <img src="" alt="3rd Place" class="podium-avatar" id="podium-img-3">
+                    </div>
+                    <h3 class="podium-ign" id="podium-ign-3">-</h3>
+                    <div class="podium-tier" id="podium-tier-3">-</div>
+                    <div class="podium-elo" id="podium-elo-3">- ELO</div>
+                </div>
+            </div>
+
+            <!-- Control Bar (Tabs & Search) -->
+            <div class="tiers-controls glass-panel">
+                <div class="gamemode-tabs">
+                    <button class="gamemode-tab active" onclick="setFilter('all', this)">
+                        <i class="fas fa-layer-group"></i> <span>All Players</span>
+                    </button>
+                    <button class="gamemode-tab" onclick="setFilter('HT', this)">
+                        <i class="fas fa-fire"></i> <span>High Tier (HT)</span>
+                    </button>
+                    <button class="gamemode-tab" onclick="setFilter('LT', this)">
+                        <i class="fas fa-shield-alt"></i> <span>Low Tier (LT)</span>
+                    </button>
+                </div>
+                <div class="tiers-search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="tiers-search-input" placeholder="Search player IGN..." autocomplete="off">
+                    <button id="search-clear-btn" class="search-clear" onclick="clearSearch()" style="display:none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Leaderboard Table -->
+            <div class="tiers-table-card glass-panel">
+                <div class="table-header">
+                    <div class="col-rank">Rank</div>
+                    <div class="col-player">Player</div>
+                    <div class="col-tier">League / Tier</div>
+                    <div class="col-elo">Rating / ELO</div>
+                    <div class="col-actions" id="col-actions-header" style="display:none;">Action</div>
+                </div>
+
+                <div class="table-body" id="tiers-body">
+                    <div class="tiers-loading-state">
+                        <div class="loading-spinner-glow"></div>
+                        <p>Syncing competitive player rankings...</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Admin Control Side Panel -->
+        <aside class="admin-panel glass-panel" id="admin-panel" style="display:none;">
+            <div class="admin-panel-header">
+                <div class="admin-header-title">
+                    <div class="admin-badge-icon"><i class="fas fa-user-shield"></i></div>
+                    <div>
+                        <h2>Staff Control</h2>
+                        <span class="admin-session-user" id="admin-session-label">Admin Mode</span>
+                    </div>
+                </div>
+                <div class="admin-header-actions">
+                    <button class="admin-icon-btn" onclick="logoutAdmin()" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                    <button class="admin-close-btn" onclick="toggleAdminPanel()" title="Close Panel">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add / Edit Form -->
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <span class="form-mode-badge" id="form-mode-badge"><i class="fas fa-plus"></i> Add New</span>
+                    <h3 id="form-title">Manage Player Tier</h3>
+                </div>
+
+                <div class="admin-form">
+                    <div class="admin-field">
+                        <label for="tierIgn"><i class="fas fa-user"></i> Minecraft Username</label>
+                        <div class="input-with-avatar">
+                            <img src="https://mc-heads.net/avatar/MHF_Steve/32" alt="Preview" id="admin-avatar-preview" class="admin-input-avatar">
+                            <input type="text" id="tierIgn" placeholder="e.g. Notch, .xyz, _xyz" class="admin-input" maxlength="20" autocomplete="off" oninput="updateAvatarPreview(this.value)">
+                        </div>
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="tierSelect"><i class="fas fa-medal"></i> Tier Category</label>
+                        <select id="tierSelect" class="admin-input" onchange="updateTierPreview()">
+                            <optgroup label="🔥 High Tier (HT)">
+                                <option value="HT1">HT1 — High Tier 1 (Grandmaster)</option>
+                                <option value="HT2">HT2 — High Tier 2 (Master)</option>
+                                <option value="HT3">HT3 — High Tier 3 (Elite)</option>
+                                <option value="HT4">HT4 — High Tier 4 (Expert)</option>
+                                <option value="HT5">HT5 — High Tier 5 (Pro)</option>
+                            </optgroup>
+                            <optgroup label="🛡️ Low Tier (LT)">
+                                <option value="LT1">LT1 — Low Tier 1 (Diamond)</option>
+                                <option value="LT2">LT2 — Low Tier 2 (Platinum)</option>
+                                <option value="LT3">LT3 — Low Tier 3 (Gold)</option>
+                                <option value="LT4">LT4 — Low Tier 4 (Silver)</option>
+                                <option value="LT5">LT5 — Low Tier 5 (Starter)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="tierElo"><i class="fas fa-chart-line"></i> Competitive ELO Rating</label>
+                        <input type="number" id="tierElo" placeholder="e.g. 1850" class="admin-input" min="0" max="99999" oninput="updateTierPreview()">
+                    </div>
+
+                    <!-- Live Badge Preview -->
+                    <div class="admin-tier-preview-box">
+                        <span class="preview-label">Live Preview</span>
+                        <div id="admin-badge-preview" class="tier-badge-ht"><i class="fas fa-crown"></i> HT1</div>
+                    </div>
+
+                    <div class="admin-actions">
+                        <button class="admin-btn admin-btn-save" onclick="saveTier()">
+                            <i class="fas fa-check"></i> <span id="save-btn-text">Save Player</span>
+                        </button>
+                        <button class="admin-btn admin-btn-delete" id="admin-btn-delete" onclick="deleteTier()" style="display:none;">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                        <button class="admin-btn admin-btn-cancel" id="admin-btn-cancel" onclick="resetAdminForm()" style="display:none;">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-subtle);">
+                        <button class="admin-btn" id="admin-btn-sync" onclick="syncPracticeTiers()" style="background: linear-gradient(135deg, #059669, #10B981); width: 100%; justify-content: center; gap: 8px;">
+                            <i class="fas fa-sync-alt"></i> <span>Sync Practice Stats Now</span>
+                        </button>
+                    </div>
+
+                    <div id="adminError" class="admin-feedback-msg error"></div>
+                    <div id="adminSuccess" class="admin-feedback-msg success"></div>
+                </div>
+            </div>
+
+            <!-- Tier Reference Guide -->
+            <div class="admin-card guide-card">
+                <h3><i class="fas fa-info-circle"></i> League Breakdown</h3>
+                <div class="guide-grid">
+                    <div class="guide-item ht"><span class="badge ht">HT1</span> 1200+ ELO</div>
+                    <div class="guide-item ht"><span class="badge ht">HT5</span> 1030+ ELO</div>
+                    <div class="guide-item lt"><span class="badge lt">LT1</span> 1010+ ELO</div>
+                    <div class="guide-item lt"><span class="badge lt">LT5</span> Starter ELO</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Admin Login Modal (For Staff who are not yet authenticated) -->
+    <div class="modal-overlay" id="admin-login-modal" style="display:none;">
+        <div class="modal-card glass-panel">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <div class="modal-icon-shield"><i class="fas fa-lock"></i></div>
+                    <div>
+                        <h2>Staff Authentication</h2>
+                        <p>Sign in with your network administrator credentials</p>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="closeAdminLoginModal()"><i class="fas fa-times"></i></button>
+            </div>
+
+            <form class="modal-form" onsubmit="handleAdminLogin(event)">
+                <div class="modal-field">
+                    <label for="admin-user-input"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="admin-user-input" class="modal-input" placeholder="Enter admin username" required autocomplete="username">
+                </div>
+
+                <div class="modal-field">
+                    <label for="admin-pass-input"><i class="fas fa-key"></i> Password</label>
+                    <input type="password" id="admin-pass-input" class="modal-input" placeholder="••••••••••••" required autocomplete="current-password">
+                </div>
+
+                <div id="admin-login-error" class="admin-feedback-msg error" style="margin-top:8px;"></div>
+
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeAdminLoginModal()">Cancel</button>
+                    <button type="submit" class="modal-btn modal-btn-primary" id="admin-login-submit-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login to Panel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast-container-tiers" class="toast-container"></div>
+
+    <script>
+        let adminToken = localStorage.getItem('ai_admin_token');
+        let isAdminPanelOpen = false;
+        let tiersData = [];
+        let activeFilter = 'all';
+
+        // Initialize UI State
+        updateAdminNavButton();
+
+        function updateAdminNavButton() {
+            const btn = document.getElementById('admin-toggle-btn');
+            const label = document.getElementById('admin-btn-label');
+            if (adminToken) {
+                btn.classList.add('authenticated');
+                label.textContent = 'Admin Panel';
+            } else {
+                btn.classList.remove('authenticated');
+                label.textContent = 'Staff Login';
+            }
+        }
+
+        function handleAdminBtnClick() {
+            if (!adminToken) {
+                openAdminLoginModal();
+            } else {
+                toggleAdminPanel();
+            }
+        }
+
+        function openAdminLoginModal() {
+            document.getElementById('admin-login-modal').style.display = 'flex';
+            document.getElementById('admin-user-input').focus();
+        }
+
+        function closeAdminLoginModal() {
+            document.getElementById('admin-login-modal').style.display = 'none';
+            document.getElementById('admin-login-error').textContent = '';
+        }
+
+        async function handleAdminLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('admin-user-input').value.trim();
+            const pass = document.getElementById('admin-pass-input').value.trim();
+            const errEl = document.getElementById('admin-login-error');
+            const btn = document.getElementById('admin-login-submit-btn');
+
+            errEl.textContent = '';
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+
+            try {
+                const res = await fetch('/api/ai/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'username=' + encodeURIComponent(user) + '&password=' + encodeURIComponent(pass)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.token) {
+                    adminToken = data.token;
+                    localStorage.setItem('ai_admin_token', adminToken);
+                    localStorage.setItem('ai_admin_user', user);
+                    closeAdminLoginModal();
+                    updateAdminNavButton();
+                    showTierToast(`Welcome back, ${user}! Admin mode active.`, 'success');
+                    toggleAdminPanel(true);
+                } else {
+                    errEl.textContent = data.error || 'Invalid credentials. Please try again.';
+                }
+            } catch (err) {
+                errEl.textContent = 'Connection error. Check server status.';
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Panel';
+        }
+
+        function logoutAdmin() {
+            adminToken = null;
+            localStorage.removeItem('ai_admin_token');
+            localStorage.removeItem('ai_admin_user');
+            updateAdminNavButton();
+            toggleAdminPanel(false);
+            showTierToast('Logged out of Staff Panel.', 'info');
+        }
+
+        function toggleAdminPanel(forceState) {
+            isAdminPanelOpen = forceState !== undefined ? forceState : !isAdminPanelOpen;
+            const panel = document.getElementById('admin-panel');
+            const layout = document.getElementById('tiers-page-layout');
+            const actionsHeader = document.getElementById('col-actions-header');
+
+            panel.style.display = isAdminPanelOpen ? 'flex' : 'none';
+            layout.classList.toggle('with-admin-panel', isAdminPanelOpen);
+            actionsHeader.style.display = isAdminPanelOpen ? 'block' : 'none';
+
+            if (isAdminPanelOpen) {
+                const user = localStorage.getItem('ai_admin_user') || 'Admin';
+                document.getElementById('admin-session-label').textContent = user;
+                resetAdminForm();
+            }
+
+            renderTiersData(tiersData);
+        }
+
+        async function loadTiers() {
+            try {
+                const res = await fetch('/api/tiers');
+                tiersData = await res.json();
+                renderTiersData(tiersData);
+                renderPodium(tiersData);
+            } catch (e) {
+                document.getElementById('tiers-body').innerHTML =
+                    '<div class="tiers-error-state"><i class="fas fa-exclamation-triangle"></i><p>Unable to connect to rankings database.</p></div>';
+            }
+        }
+
+        function renderPodium(data) {
+            const podium = document.getElementById('podium-container');
+            if (!data || data.length < 3) {
+                podium.style.display = 'none';
+                return;
+            }
+
+            podium.style.display = 'grid';
+
+            for (let i = 0; i < 3; i++) {
+                const p = data[i];
+                const rank = i + 1;
+                document.getElementById(`podium-ign-${rank}`).textContent = p.ign;
+                document.getElementById(`podium-img-${rank}`).src = `https://mc-heads.net/avatar/${encodeURIComponent(p.ign)}/100`;
+                document.getElementById(`podium-elo-${rank}`).innerHTML = `<strong>${p.elo.toLocaleString()}</strong> ELO`;
+                
+                const isHt = p.tier && p.tier.startsWith('HT');
+                const badgeClass = isHt ? 'tier-badge-ht' : 'tier-badge-lt';
+                const icon = isHt ? '<i class="fas fa-crown"></i>' : '<i class="fas fa-shield-alt"></i>';
+                document.getElementById(`podium-tier-${rank}`).innerHTML = `<span class="${badgeClass}">${icon} ${escapeHtml(p.tier)}</span>`;
+            }
+        }
+
+        function setFilter(filter, btn) {
+            activeFilter = filter;
+            document.querySelectorAll('.gamemode-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            renderTiersData(tiersData);
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('tiers-search-input');
+            input.value = '';
+            document.getElementById('search-clear-btn').style.display = 'none';
+            renderTiersData(tiersData);
+        }
+
+        function getTierInfo(elo, tierStr) {
+            let eloColor, eloLabel;
+            if (elo >= 1200)      { eloColor = "#38BDF8"; eloLabel = "Diamond"; }
+            else if (elo >= 1050) { eloColor = "#34D399"; eloLabel = "Emerald"; }
+            else if (elo >= 1010) { eloColor = "#FBBF24"; eloLabel = "Gold"; }
+            else if (elo >= 950)  { eloColor = "#94A3B8"; eloLabel = "Silver"; }
+            else                  { eloColor = "#D97706"; eloLabel = "Bronze"; }
+
+            const isHtLt = tierStr && /^(HT|LT)\d$/i.test(tierStr.trim());
+            return { eloColor, eloLabel, displayTier: tierStr || eloLabel, isHtLt };
+        }
+
+        function renderTiersData(data) {
+            const tbody = document.getElementById('tiers-body');
+            const searchVal = (document.getElementById('tiers-search-input').value || '').trim().toLowerCase();
+            
+            document.getElementById('search-clear-btn').style.display = searchVal ? 'block' : 'none';
+
+            let filtered = data || [];
+            if (searchVal) {
+                filtered = filtered.filter(p => p.ign.toLowerCase().includes(searchVal));
+            }
+
+            if (activeFilter === 'HT') {
+                filtered = filtered.filter(p => p.tier && p.tier.startsWith('HT'));
+            } else if (activeFilter === 'LT') {
+                filtered = filtered.filter(p => p.tier && p.tier.startsWith('LT'));
+            }
+
+            const countEl = document.getElementById('players-count');
+            if (countEl) countEl.innerHTML = `<i class="fas fa-users"></i> ${filtered.length} Players Ranked`;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <div class="tiers-empty-state">
+                        <i class="fas fa-search"></i>
+                        <p>No players matched your criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            filtered.forEach((p, index) => {
+                const { eloColor, eloLabel, displayTier, isHtLt } = getTierInfo(p.elo, p.tier);
+
+                let tierBadgeHtml = '';
+                if (isHtLt) {
+                    const isHt = p.tier.startsWith('HT');
+                    const icon = isHt ? '<i class="fas fa-crown"></i>' : '<i class="fas fa-shield-alt"></i>';
+                    const badgeClass = isHt ? 'tier-badge-ht' : 'tier-badge-lt';
+                    tierBadgeHtml = `<span class="${badgeClass}">${icon} ${escapeHtml(displayTier)}</span>`;
+                } else {
+                    tierBadgeHtml = `<span class="tier-badge-custom" style="--accent:${eloColor}">
+                        <i class="fas fa-star"></i> ${escapeHtml(displayTier || eloLabel)}
+                    </span>`;
+                }
+
+                const adminCols = isAdminPanelOpen ? `
+                    <div class="col-actions">
+                        <button class="inline-edit-btn" onclick="fillAdminForm('${escapeHtml(p.ign)}', '${escapeHtml(p.tier)}', ${p.elo})" title="Edit Player">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                        <button class="inline-delete-btn" onclick="quickDelete('${escapeHtml(p.ign)}')" title="Remove Player">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                ` : '';
+
+                const rankDisplay = index === 0 ? '<span class="rank-medal gold">🥇 1</span>' :
+                                   index === 1 ? '<span class="rank-medal silver">🥈 2</span>' :
+                                   index === 2 ? '<span class="rank-medal bronze">🥉 3</span>' :
+                                   `<span class="rank-num">#${index + 1}</span>`;
+
+                html += `
+                    <div class="table-row" style="--elo-glow:${eloColor}20;">
+                        <div class="col-rank">${rankDisplay}</div>
+                        <div class="col-player" onclick="copyPlayerIgn('${escapeHtml(p.ign)}')">
+                            <img src="https://mc-heads.net/avatar/${escapeHtml(p.ign)}/48" alt="${escapeHtml(p.ign)}" class="player-avatar" onerror="this.src='https://mc-heads.net/avatar/MHF_Steve/48'">
+                            <div class="player-info-group">
+                                <span class="player-ign">${escapeHtml(p.ign)}</span>
+                                <span class="player-rank-sub">${eloLabel} League</span>
+                            </div>
+                        </div>
+                        <div class="col-tier">${tierBadgeHtml}</div>
+                        <div class="col-elo">
+                            <span class="elo-val" style="color:${eloColor};">${p.elo.toLocaleString()}</span>
+                            <span class="elo-lbl">ELO</span>
+                        </div>
+                        ${adminCols}
+                    </div>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        // Search Input Listener
+        document.getElementById('tiers-search-input').addEventListener('input', () => {
+            renderTiersData(tiersData);
+        });
+
+        function copyPlayerIgn(ign) {
+            navigator.clipboard.writeText(ign).then(() => {
+                showTierToast(`Copied "${ign}" to clipboard!`, 'info');
+            });
+        }
+
+        function copyServerIp(el) {
+            navigator.clipboard.writeText('play.hydraz.online').then(() => {
+                showTierToast('Server IP "play.hydraz.online" copied!', 'success');
+            });
+        }
+
+        function updateAvatarPreview(ign) {
+            const trimmed = ign.trim();
+            const avatar = document.getElementById('admin-avatar-preview');
+            avatar.onerror = function() { this.src = 'https://mc-heads.net/avatar/MHF_Steve/32'; };
+            if (/^[a-zA-Z0-9_.]{2,20}$/.test(trimmed)) {
+                avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(trimmed)}/32`;
+            } else {
+                avatar.src = 'https://mc-heads.net/avatar/MHF_Steve/32';
+            }
+        }
+
+        function updateTierPreview() {
+            const tier = document.getElementById('tierSelect').value;
+            const previewEl = document.getElementById('admin-badge-preview');
+            const isHt = tier.startsWith('HT');
+            previewEl.className = isHt ? 'tier-badge-ht' : 'tier-badge-lt';
+            previewEl.innerHTML = `${isHt ? '<i class="fas fa-crown"></i>' : '<i class="fas fa-shield-alt"></i>'} ${tier}`;
+        }
+
+        function fillAdminForm(ign, tier, elo) {
+            document.getElementById('tierIgn').value = ign;
+            document.getElementById('tierSelect').value = tier;
+            document.getElementById('tierElo').value = elo;
+            updateAvatarPreview(ign);
+            updateTierPreview();
+
+            document.getElementById('form-mode-badge').innerHTML = '<i class="fas fa-pen"></i> Editing';
+            document.getElementById('form-title').textContent = `Edit ${ign}`;
+            document.getElementById('save-btn-text').textContent = 'Update Player';
+            document.getElementById('admin-btn-delete').style.display = 'flex';
+            document.getElementById('admin-btn-cancel').style.display = 'flex';
+
+            document.getElementById('tierElo').focus();
+        }
+
+        function resetAdminForm() {
+            document.getElementById('tierIgn').value = '';
+            document.getElementById('tierElo').value = '';
+            updateAvatarPreview('');
+            updateTierPreview();
+
+            document.getElementById('form-mode-badge').innerHTML = '<i class="fas fa-plus"></i> Add New';
+            document.getElementById('form-title').textContent = 'Manage Player Tier';
+            document.getElementById('save-btn-text').textContent = 'Save Player';
+            document.getElementById('admin-btn-delete').style.display = 'none';
+            document.getElementById('admin-btn-cancel').style.display = 'none';
+        }
+
+        async function quickDelete(ign) {
+            if (!confirm(`Are you sure you want to remove "${ign}" from competitive rankings?`)) return;
+            document.getElementById('tierIgn').value = ign;
+            await deleteTier();
+        }
+
+        function showAdminMsg(type, text) {
+            const errEl = document.getElementById('adminError');
+            const okEl = document.getElementById('adminSuccess');
+            errEl.textContent = type === 'error' ? text : '';
+            okEl.textContent = type === 'success' ? text : '';
+            setTimeout(() => { errEl.textContent = ''; okEl.textContent = ''; }, 4000);
+        }
+
+        function showTierToast(message, type = 'success') {
+            const container = document.getElementById('toast-container-tiers');
+            const toast = document.createElement('div');
+            toast.className = `tier-toast ${type}`;
+            const icon = type === 'error' ? 'fa-exclamation-circle' : type === 'info' ? 'fa-info-circle' : 'fa-check-circle';
+            toast.innerHTML = `<i class="fas ${icon}"></i> <span>${escapeHtml(message)}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('fade-out');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        async function saveTier() {
+            const ign = document.getElementById('tierIgn').value.trim();
+            const tier = document.getElementById('tierSelect').value;
+            const elo = document.getElementById('tierElo').value.trim();
+
+            if (!ign || !tier || !elo) {
+                showAdminMsg('error', 'Please fill all required fields.');
+                return;
+            }
+            if (!/^[a-zA-Z0-9_.]{2,20}$/.test(ign)) {
+                showAdminMsg('error', 'Invalid Minecraft username (2-20 characters).');
+                return;
+            }
+
+            const saveBtn = document.querySelector('.admin-btn-save');
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+            try {
+                const res = await fetch('/api/admin/tiers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': 'Bearer ' + adminToken
+                    },
+                    body: 'ign=' + encodeURIComponent(ign) + '&tier=' + encodeURIComponent(tier) + '&elo=' + encodeURIComponent(elo)
+                });
+
+                if (res.ok) {
+                    showAdminMsg('success', `✓ Saved ${ign} as ${tier} (${elo} ELO)`);
+                    showTierToast(`${ign} updated successfully!`, 'success');
+                    resetAdminForm();
+                    loadTiers();
+                } else if (res.status === 401) {
+                    showAdminMsg('error', 'Session expired. Please log in again.');
+                    logoutAdmin();
+                } else {
+                    showAdminMsg('error', 'Failed to save tier. Check input values.');
+                }
+            } catch (e) {
+                showAdminMsg('error', 'Network error. Server could not be reached.');
+            }
+
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = '<i class="fas fa-check"></i> <span id="save-btn-text">Save Player</span>';
+        }
+
+        async function deleteTier() {
+            const ign = document.getElementById('tierIgn').value.trim();
+            if (!ign) {
+                showAdminMsg('error', 'Enter the player IGN to remove.');
+                return;
+            }
+
+            const delBtn = document.getElementById('admin-btn-delete');
+            delBtn.disabled = true;
+            delBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+
+            try {
+                const res = await fetch('/api/admin/tiers?ign=' + encodeURIComponent(ign), {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + adminToken }
+                });
+
+                if (res.ok) {
+                    showAdminMsg('success', `✓ Removed ${ign} from rankings.`);
+                    showTierToast(`Removed ${ign} from rankings.`, 'error');
+                    resetAdminForm();
+                    loadTiers();
+                } else if (res.status === 401) {
+                    showAdminMsg('error', 'Session expired. Please log in again.');
+                    logoutAdmin();
+                } else {
+                    showAdminMsg('error', 'Player not found.');
+                }
+            } catch (e) {
+                showAdminMsg('error', 'Network error.');
+            }
+
+            delBtn.disabled = false;
+            delBtn.innerHTML = '<i class="fas fa-trash"></i> Delete';
+        }
+
+        async function syncPracticeTiers() {
+            const btn = document.getElementById('admin-btn-sync');
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Syncing Practice Data...';
+            }
+            try {
+                const res = await fetch('/api/admin/sync-tiers', {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + adminToken }
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showTierToast(`✓ Synced ${data.updated} players from Practice server!`, 'success');
+                    showAdminMsg('success', `✓ Synced ${data.updated} players!`);
+                    await loadTiers();
+                } else if (res.status === 401) {
+                    showTierToast('Staff session expired. Please re-login.', 'error');
+                    logoutAdmin();
+                } else {
+                    showTierToast(data.error || 'Sync failed.', 'error');
+                }
+            } catch (e) {
+                showTierToast('Network error while requesting sync.', 'error');
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-sync-alt"></i> <span>Sync Practice Stats Now</span>';
+                }
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Initialize
+        loadTiers();
+    </script>
+
+    <script src="session.js?v=20260909-6"></script>
+    <script src="ai-chat.js?v=20260909-6"></script>
+</body>
+</html>

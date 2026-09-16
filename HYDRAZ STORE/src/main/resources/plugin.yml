@@ -1,0 +1,11 @@
+name: HydrazStore
+version: 1.0.0
+main: com.hydraz.store.HydrazWebsitePlugin
+api-version: '1.20'
+authors: [AI]
+description: A web application and store for Hydraz Network.
+commands:
+  websiteadmin:
+    description: Admin commands for Hydraz Website
+    aliases: [hweb, website]
+    permission: op

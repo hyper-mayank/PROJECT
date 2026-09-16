@@ -1,0 +1,155 @@
+﻿# Hydraz Store Configuration
+web-server-port: 19048
+discord-bot-token: "MTUxNDQ0OTI1MDE1NzU5Njc2Mg.GmiIdj.oABdOA1D_pqa5FlWOz7L3H1_sCEJTXXW6J-Z3E"
+discord-log-channel-id: "1514443752280690839"
+
+# ==========================================================
+# Pterodactyl Panel API Configuration (Direct Console Delivery)
+# ==========================================================
+# You can change your Panel Base URL, API Key, and Server IDs/URLs here anytime.
+# For servers, you can put either the 8-character ID (e.g. 80e2cc37) or the full panel URL (e.g. https://panel.hydraz.online/server/80e2cc37).
+pterodactyl:
+  enabled: true
+  base-url: "https://panel.infinityhost.online"
+  api-key: "ptlc_pPq2HKl0fG2ZWR7q0nwxlAGefUPxW6I9oVHYUGHzPg2"
+  servers:
+    # Lifesteal Server (ID: 7be0b55a | URL: https://panel.infinityhost.online/server/7be0b55a)
+    lifesteal: "7be0b55a"
+    lifesteal-url: "https://panel.infinityhost.online/server/7be0b55a"
+
+    # Practice Server (ID: 4fd8cba7 | URL: https://panel.infinityhost.online/server/4fd8cba7)
+    practice: "4fd8cba7"
+    practice-url: "https://panel.infinityhost.online/server/4fd8cba7"
+
+    # Survival Server (ID: a26cdec1 | URL: https://panel.infinityhost.online/server/a26cdec1)
+    survival: "a26cdec1"
+    survival-url: "https://panel.infinityhost.online/server/a26cdec1"
+
+# ==========================================================
+# Practice Tiers Auto-Sync Configuration (StrikePractice ELO)
+# ==========================================================
+tiers:
+  auto-sync: true
+  sync-interval-minutes: 5
+  practice-server: "practice"
+  local-strikepractice-path: "C:\\Users\\Admin\\Documents\\SERVERS FILES\\hydraz-practice_plugins\\StrikePractice"
+  thresholds:
+    HT1: 1200
+    HT2: 1150
+    HT3: 1100
+    HT4: 1060
+    HT5: 1030
+    LT1: 1010
+    LT2: 1000
+    LT3: 950
+    LT4: 900
+    LT5: 0
+
+# Current server name in Velocity network
+this-server-name: "lobby"
+
+# Format used to forward commands to other servers
+forward-command-format: "forward {server} {command}"
+
+# Mapping of store items to commands, categorized by server
+# Available placeholders: %player%
+servers:
+  lifesteal:
+    "VIP Rank + VIP Kit": ["lp user %player% parent set vip"]
+    "TITAN Rank + TITAN Kit": ["lp user %player% parent set titan"]
+    "Supreme Rank + Supreme Kit": ["lp user %player% parent set supreme"]
+    "Hydraz+ Rank + Hydraz+ Kit": ["lp user %player% parent set hydraz+"]
+    "Hydraz KING Rank + Hydraz Kit": ["lp user %player% parent set hydraz+"]
+    "Common Key (Common Crate)": ["crate key give %player% common 1"]
+    "Epic Key (Epic Crate)": ["crate key give %player% epic 1"]
+    "Spawner Key (Spawner Crate)": ["crate key give %player% spawner 1"]
+    "Rare Key (Rare Crate)": ["crate key give %player% rare 1"]
+    "Hydraz Key (Hydraz Crate)": ["crate key give %player% hydraz_key 1"]
+    "700 Coins": ["points give %player% 700"]
+    "1500 Coins": ["points give %player% 1500"]
+    "2800 Coins": ["points give %player% 2800"]
+    "5560 Coins": ["points give %player% 5560"]
+  
+  practice:
+    "700 Coins": ["points give %player% 700"]
+    "1500 Coins": ["points give %player% 1500"]
+    "2800 Coins": ["points give %player% 2800"]
+    "5560 Coins": ["points give %player% 5560"]
+
+  survival:
+    "Hydraz Rank": ["lp user %player% parent set hydraz"]
+    "Hydraz+ Rank": ["lp user %player% parent set hydraz+"]
+    "Amethyst Key (Amethyst Crate)": ["crate key give %player% amethyst 1"]
+    "Gold Key (Gold Crate)": ["crate key give %player% gold 1"]
+    "Gold Key (3x Bundle)": ["crate key give %player% gold 3"]
+    "Hydraz Key (Hydraz Crate)": ["crate key give %player% hydraz_key 1"]
+
+# ==========================================================
+# In-Game Purchase Broadcast Announcement
+# ==========================================================
+# Whenever an order is accepted via Discord, this broadcast will be sent to the configured servers.
+purchase-broadcast:
+  enabled: true
+  servers:
+    - "lifesteal"
+    - "practice"
+    - "survival"
+  messages:
+    - "broadcast &8&m----------------------------------------"
+    - "broadcast &d&lHYDRAZ STORE &8» &b%player% &7just purchased &e%items%&7!"
+    - "broadcast &7Thanks for supporting our network, this helps in maintaining our server! &d❤"
+    - "broadcast &8&m----------------------------------------"
+
+# === AI Assistant Configuration ===
+ai:
+  enabled: true
+  openrouter-api-key: "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"
+  knowledge-discord-channel: "1534963149751451880"
+  max-history: 30
+  session-ttl-minutes: 60
+
+  admin-accounts:
+    - username: "admin"
+      password: "change_me_123"
+
+  public-system-prompt: |
+    You are HydrazBot, the friendly AI assistant for Hydraz Network - a Minecraft server network.
+    You can ONLY answer questions about Hydraz Network. For anything unrelated, politely decline.
+
+    SERVER INFO:
+    - IP: play.hydraz.online
+    - Servers: Lifesteal, Practice, Lobby
+    - Website/Store: store.hydraz.online
+    - Discord: discord.gg/B25sgJd3fz
+
+    LIFESTEAL STORE:
+    - Ranks: VIP Rank (₹100), TITAN Rank (₹300), Supreme Rank (₹500), Hydraz KING Rank (₹900)
+    - Keys & Crates: Common Key (₹10), Epic Key (₹20), Spawner Key (₹40), Rare Key (₹50), Hydraz Key (₹65)
+    - Coins: 700 Coins (₹90), 1,500 Coins (₹180), 2,800 Coins (₹375), 5,560 Coins (₹680)
+
+    PRACTICE STORE:
+    - Coins: 700 Coins (₹90), 1,500 Coins (₹180), 2,800 Coins (₹375), 5,560 Coins (₹680)
+
+    HOW TO BUY:
+    1. Visit store.hydraz.online
+    2. Login with your Minecraft username
+    3. Add items to cart
+    4. Pay via UPI QR code
+    5. Upload payment screenshot
+    6. Staff verifies and delivers automatically via Discord
+
+    Keep answers concise, friendly, and helpful.
+
+  admin-system-prompt: |
+    You also have ADMIN ACCESS to Hydraz Network servers.
+    You can use tools to read logs, check server status, read/edit config files,
+    and execute console commands on any connected server.
+
+# === Hydraz Agent Connections ===
+agents:
+  lifesteal:
+    url: "http://paid3.skilloraclouds.com:20049"
+    key: "lifesteal_secret_agent_key_123"
+  practice:
+    url: "http://paid3.skilloraclouds.com:25588"
+    key: "practice_secret_agent_key_789"
